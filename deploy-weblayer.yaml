@@ -1,0 +1,22 @@
+- name: deployement of package in remote server
+  hosts:  web
+  become: yes
+
+  tasks:
+  - name: stop the apache 
+    service:
+       name: httpd
+       state: stopped
+  - name: send zip to remote server
+    copy: 
+       src: weblayer-$buildnumber.zip
+       dest: /tmp/
+  - name: unzip the file in remote server
+    unarchive:
+       src: /tmp/weblayer-$buildnumber.zip
+       dest: /var/www/html/
+       remote_src: yes
+  - name: start the apache
+    service:
+       name: httpd
+       state: started
