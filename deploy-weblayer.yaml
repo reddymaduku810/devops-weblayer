@@ -8,7 +8,7 @@
        name: httpd
        state: stopped
   
-   - name: stop the apache 
+  - name: stop the apache 
     yum:
        name: unzip
        state: present     
