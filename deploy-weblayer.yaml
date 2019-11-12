@@ -7,6 +7,12 @@
     service:
        name: httpd
        state: stopped
+  
+   - name: stop the apache 
+    yum:
+       name: unzip
+       state: present     
+       
   - name: send zip to remote server
     copy: 
        src: weblayer-build.zip
